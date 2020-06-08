@@ -63,6 +63,7 @@ export class AuthService {
   }
 
   getUserFingerPrint(): string{
+    
     return '';
   }
 }
