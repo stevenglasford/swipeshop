@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotComponent } from './forgot/forgot.component';
 import { HomeComponent } from './home/home.component';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import { HomeComponent } from './home/home.component';
   ],
   imports: [
     CommonModule,
-    LoginRoutingModule
+    LoginRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class LoginModule { }
