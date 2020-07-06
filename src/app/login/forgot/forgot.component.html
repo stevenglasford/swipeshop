@@ -1,1 +1,17 @@
-<p>This page is used to help recover your account</p>
+<h2>It is so sad to hear that you forgot your password 😢</h2>
+<div [formGroup]="forgotForm">
+    <div class="form-group">
+        <label>Email Address: </label>
+        <input class="form-control" formControlName="email" type="email">
+    </div>
+</div>
+<br>
+<button [disabled]="!forgotForm.valid && !forgotForm.get('email').touched">
+    By clicking this button you accept 
+    to receive an email regarding a password reset
+</button>
+<br>
+<div id="Response">
+    {{ServerMessage}}
+</div>
+<br>

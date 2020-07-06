@@ -2,14 +2,16 @@
 <p>
     Please enter a password and email that you wish to use,
     the email must be valid as we will send a verification email
-    to you to enhance security after signing up. Without a verified
-    email, a person cannot post new content, but the user will still
-    be able to save likes.
+    to you to enhance security after signing up. We will also send you 
+    an email after each time you sign in, just to let you know that you
+    have been signed in. This is to allow you know if someone is messing
+    with you. Without a verified email, a person cannot post new content,
+    but the user will still be able to save likes.
 </p>
 <div [formGroup]="registerForm">
     <div class="form-group">
         <label>Email Id</label>
-        <input class="form-control" formControlName="email" type="text" />
+        <input class="form-control" formControlName="email" type="email" />
     </div>
     <div class="error-messages">
         <ng-container *ngFor="let error of error_messages.email">
@@ -47,4 +49,12 @@
     </div>
 </div>
 <!-- TODO: Add ReCaptcha support -->
-<button class="form-control btn btn-primary" [disabled]="!registerForm.valid && passwordNotMatch">Register Me!</button>
+<button class="form-control btn btn-primary" [disabled]="!registerForm.valid && !passwordNotMatch && !registerForm.get('password').touched">Register Me!</button>
+<div id="successfulCreation" *ngIf="accountSuccess">
+    Your account has been successfully created.
+</div>
+<div id="AccountAlreadyExists" *ngIf="accountAlreadyExists">
+    Sorry, but this account already exists, please chose something else
+    or log in using the account, if you don't remember your account password,
+    please use the handy "I forgot my password" page.
+</div>

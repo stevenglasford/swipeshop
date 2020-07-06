@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../../services/auth.service'
+
 
 @Component({
   selector: 'app-forgot',
@@ -6,8 +9,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./forgot.component.css']
 })
 export class ForgotComponent implements OnInit {
+  forgotForm: FormGroup;
+  ServerMessage: string = '';
 
-  constructor() { }
+
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+  ) {
+    this.createForm()
+  }
+
+  createForm(){
+    this.forgotForm = this.fb.group({
+      email: new FormControl('',Validators.compose([
+        Validators.required,
+      ]))
+    })
+  }
 
   ngOnInit(): void {
   }

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from  "@angular/router";
-import * as firebase from  'firebase/app';
-import { AngularFireAuth } from  "@angular/fire/auth";
+// import { AngularFireAuth } from  "@angular/fire/auth";
 import { User } from  'firebase';
 // import { resolve } from 'dns';
 
@@ -12,18 +11,36 @@ export class AuthService {
   user: User;
   MIN_PASSWORD_LENGTH: number = 10;
 
-  constructor(public  afAuth:  AngularFireAuth, public  router:  Router) { 
-  
-    this.afAuth.authState.subscribe(user => {
-      if (user){
-        this.user = user;
-        localStorage.setItem('user', JSON.stringify(this.user));
-      } else {
-        localStorage.setItem('user', null);
-      }
-    })
+  constructor(
+    // public  afAuth:  AngularFireAuth, 
+    public  router:  Router) 
+  { 
+    //   this.afAuth.authState.subscribe(user => {
+    //   if (user){
+    //     this.user = user;
+    //     localStorage.setItem('user', JSON.stringify(this.user));
+    //   } else {
+    //     localStorage.setItem('user', null);
+    //   }
+    // })
     
   }
+
+  //This function will return true if the email address
+  //is not being used by anyone, false if it is taken
+  verifyEmptyEmail():boolean {
+    //placeholder 
+    return false;
+  }
+
+  // doLogin(value){
+  //   return new Promise<any>((resolve,reject) => {
+  //     firebase.auth().signInWithEmailAndPassword(value.email, value.password)
+  //     .then(res => {
+  //       resolve(res);
+  //     }, err => reject(err))
+  //   })
+  // }
 
   // doGoogleLogin(){
   //   return new Promise<any>((resolve, reject) => {
@@ -37,42 +54,31 @@ export class AuthService {
   //   })
   // }
 
-  doLogin(value){
-    return new Promise<any>((resolve,reject) => {
-      firebase.auth().signInWithEmailAndPassword(value.email, value.password)
-      .then(res => {
-        resolve(res);
-      }, err => reject(err))
-    })
-  }
+  // doLogout(){
+  //   return new Promise((resolve, reject) => {
+  //     if (firebase.auth().currentUser){
+  //       this.afAuth.signOut();
+  //       resolve();
+  //     }
+  //     else{
+  //       reject();
+  //     }
+  //   })
+  // }
 
-  doLogout(){
-    return new Promise((resolve, reject) => {
-      if (firebase.auth().currentUser){
-        this.afAuth.signOut();
-        resolve();
-      }
-      else{
-        reject();
-      }
-    })
-  }
+  // doRegister(value){
+  //   return new Promise<any>((resolve, reject) => {
+  //     firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
+  //     .then(res => {
+  //       resolve(res);
+  //     }, err => reject(err))
+  //   })
+  // }
 
-  doRegister(value){
-    return new Promise<any>((resolve, reject) => {
-      firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
-      .then(res => {
-        resolve(res);
-      }, err => reject(err))
-    })
-  }
 
-  getMinPassLength(){
-    return this.MIN_PASSWORD_LENGTH;
-  }
 
-  getUserFingerPrint(): string{
+  // getUserFingerPrint(): string{
     
-    return '';
-  }
+  //   return '';
+  // }
 }

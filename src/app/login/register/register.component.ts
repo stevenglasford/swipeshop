@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
-// import {AuthService} from '../../services/auth.service'
+import {AuthService} from '../../services/auth.service'
 
 @Component({
   selector: 'app-register',
@@ -10,10 +10,13 @@ import {FormControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   passwordNotMatch: boolean = true;
+  accountSuccess: boolean = false;
+  accountAlreadyExists: boolean = false;
 
   error_messages = {
     'email':[
-      {type: 'required', message: 'Email is Required.'},
+      { type: 'required', message: 'Email is Required.'},
+      { type: 'valid', message: 'A valid email is required.'},
       { type: 'minlength', message: 'Email length.' },
       { type: 'maxlength', message: 'Email length.' },
       { type: 'required', message: 'please enter a valid email address.' }
@@ -32,7 +35,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    // private auth: AuthService,
+    private auth: AuthService,
   ) {
     this.createForm();
    }
@@ -45,15 +48,15 @@ export class RegisterComponent implements OnInit {
       email: new FormControl('', Validators.compose([
         Validators.required,
         Validators.email,
-
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
       ])),
       password: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.minLength(10/*this.auth.getMinPassLength()*/),
+        Validators.minLength(this.auth.MIN_PASSWORD_LENGTH),
       ])),
       confirmpassword: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.minLength(10/*this.auth.getMinPassLength()*/),
+        Validators.minLength(this.auth.MIN_PASSWORD_LENGTH),
       ])),
     }, {
       validators: this.passwordVal.bind(this)
@@ -71,14 +74,4 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  // tryRegister(value){
-  //   this.auth.doRegister(value)
-  //   .then(res => {
-  //     // this.errorMessage="";
-  //     // this.successMessage = "Your Account has been created";
-  //   }, err => {
-  //     // this.errorMessage = "Something went wrong, please try again";
-  //     // this.successMessage = "";
-  //   })
-  // }
 }
