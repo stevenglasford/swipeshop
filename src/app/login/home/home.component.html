@@ -1,8 +1,7 @@
 <h2>
-    Hello, I am pleased to met you again, friend
+    Hello, I am pleased to met you again, friend.
 </h2>
-<br>
-<p>Please enter your information so I can remember what we were doing</p>
+<p>Please enter your information so I can remember what we were doing.</p>
 
 <div [formGroup]="loginForm">
     <div class="form-group">
@@ -11,7 +10,7 @@
     </div>
     <div class="error-messages">
         <ng-container *ngFor="let error of error_messages.email">
-            <div id="badMessages" class="error-messages" *ngIf="loginForm.get('email').hasError(error.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+            <div id="badMessage" class="error-messages" *ngIf="loginForm.get('email').hasError(error.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)">
                 {{error.message}}
             </div>
         </ng-container>

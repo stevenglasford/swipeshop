@@ -4,6 +4,13 @@
         <label>Email Address: </label>
         <input class="form-control" formControlName="email" type="email">
     </div>
+    <div class="error-messages">
+        <ng-container *ngFor="let error of error_messages.email">
+            <div id="badMessage" class="error-message" *ngIf="forgotForm.get('email').hasError(error.type) && (forgotForm.get('email').dirty || forgotForm.get('email').touched)">
+                {{ error.message }}
+            </div>
+        </ng-container>
+    </div>
 </div>
 <br>
 <button [disabled]="!forgotForm.valid">
