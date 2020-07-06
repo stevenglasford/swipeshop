@@ -18,7 +18,6 @@ export class RegisterComponent implements OnInit {
       { type: 'required', message: 'Email is Required.'},
       { type: 'valid', message: 'A valid email is required.'},
       { type: 'minlength', message: 'Email length.' },
-      { type: 'maxlength', message: 'Email length.' },
       { type: 'required', message: 'please enter a valid email address.' }
     ],
     'password': [

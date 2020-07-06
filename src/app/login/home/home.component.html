@@ -1,13 +1,33 @@
 <h2>
-    Please log in.
+    Hello, I am pleased to met you again, friend
 </h2>
 <br>
-<p>username
-</p>
-<input type='text'>
-<br>
-<p>password</p>
-<input type='password'>
+<p>Please enter your information so I can remember what we were doing</p>
 
-<button>Login</button>
-<br>
+<div [formGroup]="loginForm">
+    <div class="form-group">
+        <label>Email: </label>
+        <input class="form-control" formControlName="email" type="email"/>
+    </div>
+    <div class="error-messages">
+        <ng-container *ngFor="let error of error_messages.email">
+            <div id="badMessages" class="error-messages" *ngIf="loginForm.get('email').hasError(error.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+                {{error.message}}
+            </div>
+        </ng-container>
+    </div>
+
+    <div class="form-group">
+        <label>Password: </label>
+        <input class="form-control" formControlName="password" type="password" />
+    </div>
+    <div class="error-messages">
+        <ng-container *ngFor="let error of error_messages.password">
+            <div id="badMessage" class="error-message" *ngIf="loginForm.get('password').hasError(error.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+                {{ error.message }}
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+<button>Log in</button>
