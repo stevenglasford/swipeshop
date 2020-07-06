@@ -1,1 +1,17 @@
-<p>register works!</p>
+<h3>Welcome, please sign up to use more features.</h3>
+<p>
+    Please enter a valid email address, a verification email will be sent to the
+    email you provide, this is a secondary measure against bots signing up for
+    the site. After you verify your email, you can close the email, or you can 
+    use the same email on record to recover your password if you fail to
+    remember your email in the future. We will not use your email for anything
+    other than account management.
+</p>
+<div class="container">
+    <div class="col-md-6 col-md-offset-3">
+        <form [formGroup]="registerForm">
+            <label>Email address</label>
+            <input type="email" formControlName="email" class="form-control">
+        </form>
+    </div>
+</div>

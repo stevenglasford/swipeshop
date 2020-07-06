@@ -1,1 +1,14 @@
-<p>main works!</p>
+<p>Before continuing, please log in or sign up</p>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
+<br>
+<button (click)="router.navigate(['/login/forgot']);">
+    I forgot my password
+</button>
+<button (click)="router.navigate(['/login/register']);">
+    I need to register
+</button>
+<button (click)="router.navigate(['/login/home']);">
+    I just want to login.
+</button>
