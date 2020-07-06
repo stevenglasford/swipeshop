@@ -10,7 +10,10 @@ import { User } from  'firebase';
 })
 export class AuthService {
   user: User;
+  MIN_PASSWORD_LENGTH: number = 10;
+
   constructor(public  afAuth:  AngularFireAuth, public  router:  Router) { 
+  
     this.afAuth.authState.subscribe(user => {
       if (user){
         this.user = user;
@@ -19,19 +22,20 @@ export class AuthService {
         localStorage.setItem('user', null);
       }
     })
+    
   }
 
-  doGoogleLogin(){
-    return new Promise<any>((resolve, reject) => {
-      let provider = new firebase.auth.GoogleAuthProvider();
-      provider.addScope('profile');
-      provider.addScope('email');
-      this.afAuth.signInWithPopup(provider)
-      .then(res => {
-        resolve(res);
-      })
-    })
-  }
+  // doGoogleLogin(){
+  //   return new Promise<any>((resolve, reject) => {
+  //     let provider = new firebase.auth.GoogleAuthProvider();
+  //     provider.addScope('profile');
+  //     provider.addScope('email');
+  //     this.afAuth.signInWithPopup(provider)
+  //     .then(res => {
+  //       resolve(res);
+  //     })
+  //   })
+  // }
 
   doLogin(value){
     return new Promise<any>((resolve,reject) => {
@@ -61,6 +65,10 @@ export class AuthService {
         resolve(res);
       }, err => reject(err))
     })
+  }
+
+  getMinPassLength(){
+    return this.MIN_PASSWORD_LENGTH;
   }
 
   getUserFingerPrint(): string{

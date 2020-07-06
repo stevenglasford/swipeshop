@@ -2,13 +2,16 @@
 <div class="container">
     <router-outlet></router-outlet>
 </div>
+
 <br>
-<button (click)="router.navigate(['/login/forgot']);">
-    I forgot my password
+<button (click)="router.navigate(['/','login','forgot']);">
+    I forgot my password.
 </button>
-<button (click)="router.navigate(['/login/register']);">
-    I need to register
+
+<button (click)="router.navigate(['/','login','register']);">
+    I need to register.
 </button>
-<button (click)="router.navigate(['/login/home']);">
+
+<button (click)="router.navigate(['/','login','home']);">
     I just want to login.
 </button>

@@ -1,18 +1,50 @@
 <h3>Welcome, please sign up to use more features.</h3>
 <p>
-    Please enter a valid email address, a verification email will be sent to the
-    email you provide, this is a secondary measure against bots signing up for
-    the site. After you verify your email, you can close the email, or you can 
-    use the same email on record to recover your password if you fail to
-    remember your email in the future. We will not use your email for anything
-    other than account management.
+    Please enter a password and username that you wish to use,
+    the email must be valid as we will send a verification email
+    to you to enhance security after signing up. Without a verified
+    email, a person cannot post new content, but the user will still
+    be able to save likes.
 </p>
 <div class="container">
-    <div class="col-md-6 col-md-offset-3">
-        <form [formGroup]="registerForm">
-            <label>Email address</label>
-            <input type="email" formControlName="email" class="form-control">
-        </form>
+    <div class="form-group">
+        <label>Email Id*</label>
+        <input class="form-control" formControlName="email" type="text" />
     </div>
+    <div class="error-messages">
+        <ng-container *ngFor="let error of error_messages.email">
+            <div class="error-message" *ngIf="registerForm.get('email').hasError(error.type) && (registerForm.get('email').dirty || registerForm.get('email').touched)">
+                {{ error.message }}
+            </div>
+        </ng-container>
+    </div>
+
+    <div class="form-group">
+        <label>Password*</label>
+        <input class="form-control" formControlName="password" type="password" />
+    </div>
+    <div class="error-messages">
+        <ng-container *ngFor="let error of error_messages.password">
+            <div class="error-message" *ngIf="registerForm.get('password').hasError(error.type) && (registerForm.get('password').dirty || registerForm.get('password').touched)">
+                {{ error.message }}
+            </div>
+        </ng-container>
+    </div>
+
+    <div class="form-group">
+		<label>Confirm Password*</label>
+		<input class="form-control" formControlName="confirmpassword" type="password" />
+	</div>
+	<div class="error-messages">
+		<ng-container *ngFor="let error of error_messages.confirmpassword">
+			<div class="error-message" *ngIf="registerForm.get('confirmpassword').hasError(error.type) && (registerForm.get('confirmpassword').dirty || registerForm.get('confirmpassword').touched)">
+	    		{{ error.message }}
+			</div>
+		</ng-container>
+    </div>
+    <div *ngIf="passwordNotMatch">
+        <p>Passwords do not match!</p>
+    </div>
+
 </div>
-<button type="button">Register Me!</button>
+<button class="form-control btn btn-primary" [disabled]="!registerForm.valid && passwordNotMatch">Register Me!</button>
