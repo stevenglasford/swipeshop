@@ -51,7 +51,7 @@
 <!-- TODO: Add ReCaptcha support -->
 
 <!-- <button class="form-control btn btn-primary" [disabled]="!registerForm.valid && !passwordNotMatch && !registerForm.get('password').touched">Register Me!</button> -->
-<button class="form-control btn btn-primary" [disabled]="!registerForm.valid">Register Me!</button>
+<button class="form-control btn btn-primary" [disabled]="!registerForm.valid && passwordNotMatch">Register Me!</button>
 <div id="successfulCreation" *ngIf="accountSuccess">
     Your account has been successfully created.
 </div>
