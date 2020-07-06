@@ -6,44 +6,44 @@
     email, a person cannot post new content, but the user will still
     be able to save likes.
 </p>
-<div class="container">
+<div [formGroup]="registerForm">
     <div class="form-group">
-        <label>Email Id*</label>
+        <label>Email Id</label>
         <input class="form-control" formControlName="email" type="text" />
     </div>
     <div class="error-messages">
         <ng-container *ngFor="let error of error_messages.email">
             <div class="error-message" *ngIf="registerForm.get('email').hasError(error.type) && (registerForm.get('email').dirty || registerForm.get('email').touched)">
-                {{ error.message }}
+                <err>{{ error.message }}</err>
             </div>
         </ng-container>
     </div>
 
     <div class="form-group">
-        <label>Password*</label>
+        <label>Password</label>
         <input class="form-control" formControlName="password" type="password" />
     </div>
     <div class="error-messages">
         <ng-container *ngFor="let error of error_messages.password">
             <div class="error-message" *ngIf="registerForm.get('password').hasError(error.type) && (registerForm.get('password').dirty || registerForm.get('password').touched)">
-                {{ error.message }}
+                <err>{{ error.message }}</err>
             </div>
         </ng-container>
     </div>
 
     <div class="form-group">
-		<label>Confirm Password*</label>
+		<label>Confirm Password</label>
 		<input class="form-control" formControlName="confirmpassword" type="password" />
 	</div>
 	<div class="error-messages">
 		<ng-container *ngFor="let error of error_messages.confirmpassword">
 			<div class="error-message" *ngIf="registerForm.get('confirmpassword').hasError(error.type) && (registerForm.get('confirmpassword').dirty || registerForm.get('confirmpassword').touched)">
-	    		{{ error.message }}
+	    		<err>{{ error.message }}</err>
 			</div>
 		</ng-container>
     </div>
     <div *ngIf="passwordNotMatch">
-        <p>Passwords do not match!</p>
+        <err>Passwords do not match!</err>
     </div>
 
 </div>
