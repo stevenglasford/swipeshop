@@ -1,6 +1,6 @@
 <h3>Welcome, please sign up to use more features.</h3>
 <p>
-    Please enter a password and username that you wish to use,
+    Please enter a password and email that you wish to use,
     the email must be valid as we will send a verification email
     to you to enhance security after signing up. Without a verified
     email, a person cannot post new content, but the user will still
@@ -13,8 +13,8 @@
     </div>
     <div class="error-messages">
         <ng-container *ngFor="let error of error_messages.email">
-            <div class="error-message" *ngIf="registerForm.get('email').hasError(error.type) && (registerForm.get('email').dirty || registerForm.get('email').touched)">
-                <err>{{ error.message }}</err>
+            <div id="badMessage" class="error-message" *ngIf="registerForm.get('email').hasError(error.type) && (registerForm.get('email').dirty || registerForm.get('email').touched)">
+                {{ error.message }}
             </div>
         </ng-container>
     </div>
@@ -25,8 +25,8 @@
     </div>
     <div class="error-messages">
         <ng-container *ngFor="let error of error_messages.password">
-            <div class="error-message" *ngIf="registerForm.get('password').hasError(error.type) && (registerForm.get('password').dirty || registerForm.get('password').touched)">
-                <err>{{ error.message }}</err>
+            <div id="badMessage" class="error-message" *ngIf="registerForm.get('password').hasError(error.type) && (registerForm.get('password').dirty || registerForm.get('password').touched)">
+                {{ error.message }}
             </div>
         </ng-container>
     </div>
@@ -37,14 +37,14 @@
 	</div>
 	<div class="error-messages">
 		<ng-container *ngFor="let error of error_messages.confirmpassword">
-			<div class="error-message" *ngIf="registerForm.get('confirmpassword').hasError(error.type) && (registerForm.get('confirmpassword').dirty || registerForm.get('confirmpassword').touched)">
-	    		<err>{{ error.message }}</err>
+			<div id="badMessage" class="error-message" *ngIf="registerForm.get('confirmpassword').hasError(error.type) && (registerForm.get('confirmpassword').dirty || registerForm.get('confirmpassword').touched)">
+	    		{{ error.message }}
 			</div>
 		</ng-container>
     </div>
-    <div *ngIf="passwordNotMatch">
-        <err>Passwords do not match!</err>
+    <div id="badMessage" *ngIf="passwordNotMatch" >
+        Passwords do not Match!
     </div>
-
 </div>
+<!-- TODO: Add ReCaptcha support -->
 <button class="form-control btn btn-primary" [disabled]="!registerForm.valid && passwordNotMatch">Register Me!</button>
