@@ -51,11 +51,13 @@
 <!-- TODO: Add ReCaptcha support -->
 
 <!-- <button class="form-control btn btn-primary" [disabled]="!registerForm.valid && !passwordNotMatch && !registerForm.get('password').touched">Register Me!</button> -->
-<button class="form-control btn btn-primary" [disabled]="!registerForm.valid || passwordNotMatch">Register Me!</button>
+<button type="submit" class="form-control btn btn-primary" 
+    [disabled]="!registerForm.valid || passwordNotMatch"
+    (click)="tryRegister(registerForm.value)">Register Me!</button>
 <div id="successfulCreation" *ngIf="accountSuccess">
     Your account has been successfully created.
 </div>
-<div id="AccountAlreadyExists" *ngIf="accountAlreadyExists">
+<div id="AccountAlreadyExists" *ngIf="accountError">
     Sorry, but this account already exists, please chose something else
     or log in using the account, if you don't remember your account password,
     please use the handy "I forgot my password" page.

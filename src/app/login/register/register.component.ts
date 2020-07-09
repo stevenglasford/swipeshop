@@ -10,8 +10,9 @@ import {AuthService} from '../../services/auth.service'
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   passwordNotMatch: boolean = true;
+  serverMessage: string = '';
   accountSuccess: boolean = false;
-  accountAlreadyExists: boolean = false;
+  accountError: boolean = false;
 
   error_messages = {
     'email':[
@@ -73,4 +74,17 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  tryRegister(value){
+    this.accountError = false;
+    this.accountSuccess = false;
+    this.serverMessage = "";
+    this.auth.doRegistration(value)
+    .then(res => {
+      this.accountSuccess = true;
+      this.serverMessage = "Your account was successfully made, please go and log in.";
+    }, err => {
+      this.accountError = true;
+      this.serverMessage = "There was an error signing up, please try again.";
+    })
+  }
 }
