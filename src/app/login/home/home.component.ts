@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
     private fb: FormBuilder,
     private auth: AuthService,
   ) { 
+    //if the user is already logged in redirect to home
     this.createForm();
   }
 
@@ -41,12 +42,16 @@ export class HomeComponent implements OnInit {
       ])),
       password: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.minLength(this.auth.MIN_PASSWORD_LENGTH),
+        Validators.minLength(this.auth.getMinLenPass()),
       ]))
     })
   }
 
   ngOnInit(): void {
+  }
+
+  onSubmit(){
+    
   }
 
 }

@@ -3,13 +3,16 @@ import { Router } from  "@angular/router";
 import { User } from  'firebase';
 import {AngularFireAuth} from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  user: User;
-  MIN_PASSWORD_LENGTH: number = 10;
+  private currentUserSubject: BehaviorSubject<User>;
+  private currentUser: Observable<User>;
+  private MIN_PASSWORD_LENGTH: number = 10;
+  private isUserLoggedIn: boolean = false;
 
   constructor(
     public  router:  Router,
@@ -19,6 +22,9 @@ export class AuthService {
     
   }
 
+  getMinLenPass(): number{
+    return this.MIN_PASSWORD_LENGTH;
+  }
   // This function tries to register a user
   // Returns 0: Application registration successful
   // Returns 1: General error, contact support 
@@ -33,4 +39,14 @@ export class AuthService {
       }, err => reject(err))
     })
   }
+
+  // doLogin(value){
+  //   return new Promise<any>((resolve, reject) =>{
+  //     firebase.auth.
+  //     .then(res => {
+  //       resolve(res);
+  //     }, err => reject(err))
+  //     }
+  //   })
+  // }
 }
