@@ -24,7 +24,7 @@
     "firebase-functions": "^3.7.0",
     "firebase-tools": "^8.4.3",
     "firestore": "^1.1.6",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "ngx-cookie-service": "^3.0.4",
     "rxjs": "~6.5.4",
     "tslib": "^2.0.0",
